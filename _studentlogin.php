@@ -8,7 +8,7 @@ if (isset($_POST['form'])) {
                 $_dob =    $_POST["d_o_b"];
                 $_udob =   "";
                 // echo $_regNo;
-                if (!empty($_regNo)) {
+                if (!empty($_regNo)&&!empty($_dob)) {
                     require_once './action/_config.php';
                     $sql = "SELECT dob FROM regestration WHERE regno = " . $_regNo;
                     $result = $conn->query($sql);
@@ -26,8 +26,11 @@ if (isset($_POST['form'])) {
                         // header("location:index.php");
                     } else {
                         echo 'Password INCorrect';
+                        echo '<script>alert("Wrong Id or Password")</script>'; 
                         // header("location:Reg.php");
                     }
+                }else{
+                    echo '<script>alert("Please Fill Details")</script>'; 
                 }
                 break;
             }
@@ -102,6 +105,7 @@ if (isset($_POST['form'])) {
         ?>
     </header>
     <div class="container1" style="margin-top: 50px;">
+    <h2>Login</h2>
         <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
             <input type="hidden" name="form" value="A">
             <input type="text" name="reg_no" placeholder="Username"><br>
@@ -119,6 +123,7 @@ if (isset($_POST['form'])) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     // echo $row["s_name"] . $row["dob"] . $row["course"] . $row["mob"] . $row["e_mail"] . $row["date"];
+                    echo "<h2>Resestration Details</h2>";
                     echo "<input type='text' disabled value='" . $_regNo . "'><br>";
                     echo "<input type='text' disabled value='" . $row["s_name"] . "'><br>";
                     echo "<input type='text' disabled value='". $row["dob"] , "'><br>";
@@ -133,6 +138,7 @@ if (isset($_POST['form'])) {
     </div>
     <div class="containe2">
         <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+        <h2>Personal Details</h2>
             <input type="hidden" name="form" value="B">
             <input type="text" name="fname" placeholder="Father"><br>
             <input type="text" name="mname" placeholder="Mother"><br>
@@ -146,6 +152,7 @@ if (isset($_POST['form'])) {
     </div>
     <div class="container3">
         <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+        <h2>Address</h2>
             <input type="hidden" name="form" value="C">
             <input type="text" name="hno" placeholder="House No."><br>
             <input type="text" name="rno" placeholder="Road No."><br>
