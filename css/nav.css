@@ -28,8 +28,6 @@ ul li a{
     flex-wrap: wrap;
     visibility: hidden;
     transition: .3s;
-    z-index: -1;
-
 }
 .dropdown2{
     position: absolute;

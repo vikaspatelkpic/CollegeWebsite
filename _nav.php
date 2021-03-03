@@ -1,12 +1,12 @@
 <nav>
     <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="./index.php">Home</a></li>
         <li><a href="#">Student</a>
             <ul class="dropdown">
                 <li><a href="#">New Admission</a>
                     <ul class="dropdown2">
                         <li><a href="./Reg.php">Register</a></li>
-                        <li><a href="#">Login To Complite Form</a></li>
+                        <li><a href="./_studentlogin.php">Login To Complite Form</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Syllabus</a></li>
