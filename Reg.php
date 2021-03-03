@@ -62,7 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 require_once './action/_config.php';
                 $sql = "SELECT c_name FROM course";
                 $result = $conn->query($sql);
-
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while ($row = $result->fetch_assoc()) {

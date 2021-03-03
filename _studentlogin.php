@@ -19,12 +19,9 @@ if (isset($_POST['form'])) {
                     } else {
                         echo "0 results";
                     }
-                    $conn->close();
                     if ($_dob == $_udob) {
                         session_start();
                         $_SESSION['regno'] = $_POST['reg_no'];
-                        echo $_SESSION['regno'];
-
                         echo 'Password Correct';
                         // header("location:index.php");
                     } else {
@@ -52,7 +49,6 @@ if (isset($_POST['form'])) {
                     } else {
                         echo "Error: " . $sql2 . "<br>" . $conn->error;
                     }
-
                     $conn->close();
                 }
                 break;
@@ -75,7 +71,6 @@ if (isset($_POST['form'])) {
                     } else {
                         echo "Error: " . $sql3 . "<br>" . $conn->error;
                     }
-
                     $conn->close();
                 }
                 break;
@@ -93,7 +88,7 @@ if (isset($_POST['form'])) {
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/nav.css">
     <style>
-        /* .containe2 {
+        /* .container4 {
             display: none;
         } */
     </style>
@@ -113,6 +108,23 @@ if (isset($_POST['form'])) {
             <input type="password" name="d_o_b" placeholder="Password"><br>
             <input type="submit" name="btn1" value="Login">
         </form>
+    </div>
+    <div class="container4">
+        <?php
+        if (isset($_SESSION)) {
+            $_regNo = $_SESSION['regno'];
+            $sql5 = "SELECT * FROM regestration where regno = " . $_regNo;
+            $result = $conn->query($sql5);
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    echo $row["s_name"] . $row["dob"] . $row["course"] . $row["mob"] . $row["e_mail"] . $row["date"];
+                    echo "<input type='text' disabled value='" . $_regNo . "'><br>";
+                    echo "<input type='text' disabled value='" . $row["s_name"] . "'><br>";
+                }
+            }
+        }
+        ?>
     </div>
     <div class="containe2">
         <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
@@ -138,18 +150,6 @@ if (isset($_POST['form'])) {
             <input type="text" name="pin" placeholder="pin"><br>
             <input type="text" name="fladd" placeholder="full Address"><br>
             <input type="submit" value="Next">
-        </form>
-    </div>
-    <div class="container4">
-    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-            <input type="hidden" name="form" value="D">
-            <input type="text" name="" placeholder=""><br>
-            <input type="text" name="" placeholder=""><br>
-            <input type="text" name="" placeholder=""><br>
-            <input type="text" name="" placeholder=""><br>
-            <input type="text" name="" placeholder=""><br>
-            <input type="text" name="" placeholder=""><br>
-            <input type="text" name="" placeholder=""><br>
         </form>
     </div>
 </body>
