@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['form'])) {
-    global $_regNo;
+    // global $_regNo;
     echo $_POST['form'];
     switch ($_POST['form']) {
         case "A": {
@@ -118,9 +118,14 @@ if (isset($_POST['form'])) {
             if ($result->num_rows > 0) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
-                    echo $row["s_name"] . $row["dob"] . $row["course"] . $row["mob"] . $row["e_mail"] . $row["date"];
+                    // echo $row["s_name"] . $row["dob"] . $row["course"] . $row["mob"] . $row["e_mail"] . $row["date"];
                     echo "<input type='text' disabled value='" . $_regNo . "'><br>";
                     echo "<input type='text' disabled value='" . $row["s_name"] . "'><br>";
+                    echo "<input type='text' disabled value='". $row["dob"] , "'><br>";
+                    echo "<input type='text' disabled value='". $row["course"], "'><br>";
+                    echo "<input type='text' disabled value='". $row["mob"], "'><br>";
+                    echo "<input type='text' disabled value='". $row["e_mail"] , "'><br>";
+                    echo "<input type='text' disabled value='".  $row["date"] , "'><br>";
                 }
             }
         }
